@@ -1,0 +1,30 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var Product_Controller_1 = require("../controllers/Product.Controller");
+var Authentication_1 = require("../middleware/Authentication");
+var ValidateRequest_1 = __importDefault(require("../middleware/ValidateRequest"));
+var Product_Schema_1 = require("../schema/Product.Schema");
+var ProductRoute = function (app) {
+    app.get("/product/:id", Product_Controller_1.GetProductByIDHandler);
+    app.get("/products", Product_Controller_1.GetListProductHandler);
+    app.get("/products/length", Product_Controller_1.GetLengthOfProductHandler);
+    app.get("/products/length/:category", Product_Controller_1.GetLengthOfProductWithCategoryHandler);
+    app.get("/products/:category", Product_Controller_1.GetListProductsByCategoryHandler);
+    app.get("/products/search/:page", Product_Controller_1.GetListProductWithPageHandler);
+    app.post("/product", Authentication_1.VerifyLogin, Authentication_1.RequireStaff, (0, ValidateRequest_1.default)(Product_Schema_1.CreateProductSchema), Product_Controller_1.CreateProductHandler);
+    app.post("/products/order", Authentication_1.VerifyLogin, (0, ValidateRequest_1.default)(Product_Schema_1.GetListProductForOrder), Product_Controller_1.GetListProductForOrderHandler);
+    app.post("/products/sort/name", (0, ValidateRequest_1.default)(Product_Schema_1.GetListProductSortedSchema), Product_Controller_1.GetListProductsSortedByNameHandler);
+    app.post("/products/sort/name/:page", (0, ValidateRequest_1.default)(Product_Schema_1.GetListProductSortedSchema), Product_Controller_1.GetListProductsSortedByNameWithPageHandler);
+    app.post("/products/sort/price", (0, ValidateRequest_1.default)(Product_Schema_1.GetListProductSortedSchema), Product_Controller_1.GetListProductSortByPriceHandler);
+    app.post("/products/sort/price/:page", (0, ValidateRequest_1.default)(Product_Schema_1.GetListProductSortedSchema), Product_Controller_1.GetListProductSortByPriceWithPageHandler);
+    app.post("/products/sort/name/category/:idCategory", (0, ValidateRequest_1.default)(Product_Schema_1.GetListProductSortedSchema), Product_Controller_1.GetListProductByCategorySortedByNameHandler);
+    app.post("/products/sort/price/category/:idCategory", (0, ValidateRequest_1.default)(Product_Schema_1.GetListProductSortedSchema), Product_Controller_1.GetListProductByCategorySortedByPriceHandler);
+    app.post("/products/sort", (0, ValidateRequest_1.default)(Product_Schema_1.GetListProductSortedByNameAndPriceSchema), Product_Controller_1.GetListProductSortedByNameAndPriceHandler);
+    app.post("/products/sort/:idCategory", (0, ValidateRequest_1.default)(Product_Schema_1.GetListProductByCategorySortedByNameAndPriceSchema), Product_Controller_1.GetListProductByCategorySortedByNameAndPriceHandler);
+    app.put("/product/:id", Authentication_1.VerifyLogin, Authentication_1.RequireStaff, (0, ValidateRequest_1.default)(Product_Schema_1.CreateProductSchema), Product_Controller_1.UpdateProductHandler);
+    app.delete("/product/:id", Authentication_1.VerifyLogin, Authentication_1.RequireStaff, Product_Controller_1.DeleteProductByIDHandler);
+};
+exports.default = ProductRoute;

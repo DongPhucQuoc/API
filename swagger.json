@@ -1,0 +1,3795 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Coffee API",
+    "contact": {}
+  },
+  "basePath": "/",
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/user": {
+      "post": {
+        "tags": ["Auth"],
+        "security": [],
+        "summary": "Register Account",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "required": true,
+                  "example": "Quynh"
+                },
+                "lastName": {
+                  "type": "string",
+                  "required": true,
+                  "example": "Vo"
+                },
+                "email": {
+                  "type": "string",
+                  "required": true,
+                  "example": "truongquynh2525@gmail.com"
+                },
+                "phone": {
+                  "type": "string",
+                  "required": true,
+                  "example": "0985879703"
+                },
+                "address": {
+                  "type": "string",
+                  "required": true,
+                  "example": "Ho Chi Minh"
+                },
+                "password": {
+                  "type": "string",
+                  "required": true,
+                  "example": "123123"
+                },
+                "cPassword": {
+                  "type": "string",
+                  "required": true,
+                  "example": "123123"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "object",
+                  "properties": {
+                    "firstName": {
+                      "type": "string",
+                      "example": "Quynh"
+                    },
+                    "lastName": {
+                      "type": "string",
+                      "example": "Vo"
+                    },
+                    "phone": {
+                      "type": "string",
+                      "example": "0985879703"
+                    },
+                    "address": {
+                      "type": "string",
+                      "example": "Ho Chi Minh"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "truongquynh2525@gmail.com"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["Auth"],
+        "security": [],
+        "summary": "Login Account",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "required": true,
+                  "example": "truongquynh2525@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "required": true,
+                  "example": "123123"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/forgot-password": {
+      "post": {
+        "tags": ["Auth"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Change Password",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "required": true,
+                  "example": "truongquynh2525@gmail.com"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "SUCCESSFUL"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/change-password": {
+      "put": {
+        "tags": ["Auth"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Change Password",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "password": {
+                  "type": "string",
+                  "required": true,
+                  "example": "123"
+                },
+                "newPassword": {
+                  "type": "string",
+                  "required": true,
+                  "example": "123456"
+                },
+                "cNewPassword": {
+                  "type": "string",
+                  "required": true,
+                  "example": "123456"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "SUCCESSFUL"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "tags": ["Profile"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Me",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "603cac91da0b833210f50308"
+                        },
+                        "firstName": {
+                          "type": "string",
+                          "example": "Quynh"
+                        },
+                        "lastName": {
+                          "type": "string",
+                          "example": "Vo"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "truongquynh2525@gmail.com"
+                        },
+                        "phone": {
+                          "type": "string",
+                          "example": "0985879703"
+                        },
+                        "address": {
+                          "type": "string",
+                          "example": "Ho Chi Minh"
+                        },
+                        "role": {
+                          "type": "string",
+                          "example": "GUEST"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Profile"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Update Profile",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "required": true,
+                  "example": "Quynh"
+                },
+                "lastName": {
+                  "type": "string",
+                  "required": true,
+                  "example": "Vo"
+                },
+                "email": {
+                  "type": "string",
+                  "required": true,
+                  "example": "truongquynh2525@gmail.com"
+                },
+                "phone": {
+                  "type": "string",
+                  "required": true,
+                  "example": "0985879703"
+                },
+                "address": {
+                  "type": "string",
+                  "required": true,
+                  "example": "Dong Nai"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "603cac91da0b833210f50308"
+                        },
+                        "firstName": {
+                          "type": "string",
+                          "example": "Tai"
+                        },
+                        "lastName": {
+                          "type": "string",
+                          "example": "Nguyen"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "tainguyenzz18@gmail.com"
+                        },
+                        "phone": {
+                          "type": "string",
+                          "example": "0938329469"
+                        },
+                        "address": {
+                          "type": "string",
+                          "example": "HCM"
+                        },
+                        "role": {
+                          "type": "string",
+                          "example": "admin"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Get List Product",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "example": "5fe80b2fcc75a33868ff2751"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Ca phe da"
+                          },
+                          "price": {
+                            "type": "number",
+                            "example": 25000
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "Ca phe nguyen chat tu Tay Nguyen"
+                          },
+                          "category": {
+                            "type": "object",
+                            "properties": {
+                              "_id": {
+                                "type": "string",
+                                "example": "2fe80b2fcc75a11258ff32512"
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "Ca phe"
+                              }
+                            }
+                          },
+                          "images": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "_id": {
+                                  "type": "string",
+                                  "example": "3ac24a1zxx17n56535hf26519"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                                }
+                              }
+                            }
+                          },
+                          "createdBy": {
+                            "type": "string",
+                            "example": "Quynh Vo"
+                          },
+                          "updatedBy": {
+                            "type": "string",
+                            "example": "Quynh Vo"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product/:id": {
+      "get": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Get Product By ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "example": "60a91d3201eb046f56368dc1",
+              "description": "ID Product"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "5fe80b2fcc75a33868ff2751"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "Ca phe da"
+                    },
+                    "price": {
+                      "type": "number",
+                      "example": 25000
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Ca phe nguyen chat tu Tay Nguyen"
+                    },
+                    "category": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "2fe80b2fcc75a11258ff32512"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "Ca phe"
+                        }
+                      }
+                    },
+                    "images": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "example": "3ac24a1zxx17n56535hf26519"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                          }
+                        }
+                      }
+                    },
+                    "createdBy": {
+                      "type": "string",
+                      "example": "Quynh Vo"
+                    },
+                    "updatedBy": {
+                      "type": "string",
+                      "example": "Quynh Vo"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Edit Product By ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "example": "60a91d3201eb046f56368dc1",
+              "description": "ID Product"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "required": true,
+                  "example": "Ca phe den"
+                },
+                "price": {
+                  "type": "number",
+                  "required": true,
+                  "example": 28000
+                },
+                "description": {
+                  "type": "string",
+                  "required": true,
+                  "example": "Ca phe nguyen chat duoc san xuat tu Tay Nguyen"
+                },
+                "category": {
+                  "type": "string",
+                  "required": true,
+                  "example": "2fe80b2fcc75a11258ff32512"
+                },
+                "images": {
+                  "type": "file",
+                  "required": true
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "5fe80b2fcc75a33868ff2751"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "Ca phe den"
+                    },
+                    "price": {
+                      "type": "number",
+                      "example": 25000
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Ca phe nguyen chat tu Tay Nguyen"
+                    },
+                    "category": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "2fe80b2fcc75a11258ff32512"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "Ca phe"
+                        }
+                      }
+                    },
+                    "images": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "example": "3ac24a1zxx17n56535hf26519"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                          }
+                        }
+                      }
+                    },
+                    "createdBy": {
+                      "type": "string",
+                      "example": "Quynh Vo"
+                    },
+                    "updatedBy": {
+                      "type": "string",
+                      "example": "Quynh Vo"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Delete Product By ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "example": "60a91d3201eb046f56368dc1",
+              "description": "ID Product"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "DELETE SUCCESSFUL"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/length": {
+      "get": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Get Length List Product",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "number",
+                  "example": 10
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product/length/:category": {
+      "get": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Get Length List Product By Category",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "example": "60a91d3201eb046f56368dc1",
+              "description": "ID Category"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "number",
+                  "example": 10
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product/:category": {
+      "get": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Get List Product By Category",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "description": "ID Category",
+            "schema": {
+              "type": "string",
+              "example": "603cb44235eb995b8c27ae8e"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "5fe80b2fcc75a33868ff2751"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "Ca phe da"
+                      },
+                      "price": {
+                        "type": "number",
+                        "example": 25000
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Ca phe nguyen chat tu Tay Nguyen"
+                      },
+                      "category": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "example": "2fe80b2fcc75a11258ff32512"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Ca phe"
+                          }
+                        }
+                      },
+                      "images": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "3ac24a1zxx17n56535hf26519"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                            }
+                          }
+                        }
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product/search/:page": {
+      "get": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Get List Product With Page",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "path",
+            "description": "in page",
+            "schema": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "5fe80b2fcc75a33868ff2751"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "Ca phe da"
+                      },
+                      "price": {
+                        "type": "number",
+                        "example": 25000
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Ca phe nguyen chat tu Tay Nguyen"
+                      },
+                      "category": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "example": "2fe80b2fcc75a11258ff32512"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Ca phe"
+                          }
+                        }
+                      },
+                      "images": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "3ac24a1zxx17n56535hf26519"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                            }
+                          }
+                        }
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product": {
+      "post": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Create Product",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "required": true,
+                  "example": "Ca phe da"
+                },
+                "price": {
+                  "type": "number",
+                  "required": true,
+                  "example": 25000
+                },
+                "description": {
+                  "type": "string",
+                  "required": true,
+                  "example": "Ca phe nguyen chat duoc san xuat tu Tay Nguyen"
+                },
+                "category": {
+                  "type": "string",
+                  "required": true,
+                  "example": "2fe80b2fcc75a11258ff32512"
+                },
+                "images": {
+                  "type": "file",
+                  "required": true
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "SUCCESSFUL"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/order": {
+      "post": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Get List Product To Order",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "list": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "[0]": {
+                        "type": "string",
+                        "example": "2fe80b2fcc75a11258ff32512"
+                      },
+                      "[1]": {
+                        "type": "string",
+                        "example": "3fe80b2fcc75a11250ff32515"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "5fe80b2fcc75a33868ff2751"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "Ca phe da"
+                      },
+                      "price": {
+                        "type": "number",
+                        "example": 25000
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Ca phe nguyen chat tu Tay Nguyen"
+                      },
+                      "category": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "example": "2fe80b2fcc75a11258ff32512"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Ca phe"
+                          }
+                        }
+                      },
+                      "images": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "3ac24a1zxx17n56535hf26519"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                            }
+                          }
+                        }
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/sort/name": {
+      "post": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Get List Product Sorted By Name",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "increment"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "5fe80b2fcc75a33868ff2751"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "Ca phe da"
+                      },
+                      "price": {
+                        "type": "number",
+                        "example": 25000
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Ca phe nguyen chat tu Tay Nguyen"
+                      },
+                      "category": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "example": "2fe80b2fcc75a11258ff32512"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Ca phe"
+                          }
+                        }
+                      },
+                      "images": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "3ac24a1zxx17n56535hf26519"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                            }
+                          }
+                        }
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/sort/name/:page": {
+      "post": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Get List Product Sorted By Name With Page",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "path",
+            "description": "Page",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "example": 1
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "increment"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "5fe80b2fcc75a33868ff2751"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "Ca phe da"
+                      },
+                      "price": {
+                        "type": "number",
+                        "example": 25000
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Ca phe nguyen chat tu Tay Nguyen"
+                      },
+                      "category": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "example": "2fe80b2fcc75a11258ff32512"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Ca phe"
+                          }
+                        }
+                      },
+                      "images": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "3ac24a1zxx17n56535hf26519"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                            }
+                          }
+                        }
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/sort/name/category/:idCategory": {
+      "post": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Get List Product Sorted By Name With Page And Category ID",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "description": "ID Category",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2fe80b2fcc75a11258ff32512"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "increment"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "5fe80b2fcc75a33868ff2751"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "Ca phe da"
+                      },
+                      "price": {
+                        "type": "number",
+                        "example": 25000
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Ca phe nguyen chat tu Tay Nguyen"
+                      },
+                      "category": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "example": "2fe80b2fcc75a11258ff32512"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Ca phe"
+                          }
+                        }
+                      },
+                      "images": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "3ac24a1zxx17n56535hf26519"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                            }
+                          }
+                        }
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/sort/price": {
+      "post": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Get List Product Sorted By Price",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "increment"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "5fe80b2fcc75a33868ff2751"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "Ca phe da"
+                      },
+                      "price": {
+                        "type": "number",
+                        "example": 25000
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Ca phe nguyen chat tu Tay Nguyen"
+                      },
+                      "category": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "example": "2fe80b2fcc75a11258ff32512"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Ca phe"
+                          }
+                        }
+                      },
+                      "images": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "3ac24a1zxx17n56535hf26519"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                            }
+                          }
+                        }
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/sort/price/:page": {
+      "post": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Get List Product Sorted By Price With Page",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "path",
+            "description": "Page",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "example": 1
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "increment"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "5fe80b2fcc75a33868ff2751"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "Ca phe da"
+                      },
+                      "price": {
+                        "type": "number",
+                        "example": 25000
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Ca phe nguyen chat tu Tay Nguyen"
+                      },
+                      "category": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "example": "2fe80b2fcc75a11258ff32512"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Ca phe"
+                          }
+                        }
+                      },
+                      "images": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "3ac24a1zxx17n56535hf26519"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                            }
+                          }
+                        }
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/sort/price/category/:idCategory": {
+      "post": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Get List Product Sorted By Name With Page And Category ID",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "description": "ID Category",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2fe80b2fcc75a11258ff32512"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "increment"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "5fe80b2fcc75a33868ff2751"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "Ca phe da"
+                      },
+                      "price": {
+                        "type": "number",
+                        "example": 25000
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Ca phe nguyen chat tu Tay Nguyen"
+                      },
+                      "category": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "example": "2fe80b2fcc75a11258ff32512"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Ca phe"
+                          }
+                        }
+                      },
+                      "images": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "3ac24a1zxx17n56535hf26519"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                            }
+                          }
+                        }
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/sort": {
+      "post": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Get List Product Sorted",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "typeName": {
+                  "type": "string",
+                  "example": "increment"
+                },
+                "typePrice": {
+                  "type": "string",
+                  "example": "increment"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "5fe80b2fcc75a33868ff2751"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "Ca phe da"
+                      },
+                      "price": {
+                        "type": "number",
+                        "example": 25000
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Ca phe nguyen chat tu Tay Nguyen"
+                      },
+                      "category": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "example": "2fe80b2fcc75a11258ff32512"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Ca phe"
+                          }
+                        }
+                      },
+                      "images": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "3ac24a1zxx17n56535hf26519"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                            }
+                          }
+                        }
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/sort/:idCategory": {
+      "post": {
+        "tags": ["Product"],
+        "security": [],
+        "summary": "Get List Product Sorted By Name With Page And Category ID",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "description": "ID Category",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2fe80b2fcc75a11258ff32512"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "typeName": {
+                  "type": "string",
+                  "example": "increment"
+                },
+                "typePrice": {
+                  "type": "string",
+                  "example": "increment"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "5fe80b2fcc75a33868ff2751"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "Ca phe da"
+                      },
+                      "price": {
+                        "type": "number",
+                        "example": 25000
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Ca phe nguyen chat tu Tay Nguyen"
+                      },
+                      "category": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "example": "2fe80b2fcc75a11258ff32512"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Ca phe"
+                          }
+                        }
+                      },
+                      "images": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "3ac24a1zxx17n56535hf26519"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                            }
+                          }
+                        }
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/category/:id": {
+      "get": {
+        "tags": ["Category"],
+        "security": [],
+        "summary": "Get Category By ID",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "path",
+            "description": "Page",
+            "schema": {
+              "type": "string",
+              "example": "2fe80b2fcc75a11258ff32512"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Ca phe"
+                    },
+                    "createdBy": {
+                      "type": "string",
+                      "example": "Quynh Vo"
+                    },
+                    "updatedBy": {
+                      "type": "string",
+                      "example": "Quynh Vo"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Category"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Edit Category By ID",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": true,
+            "schema": {
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "required": true,
+                  "example": "Tra sua"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Tra sua"
+                },
+                "createdBy": {
+                  "type": "string",
+                  "example": "Quynh Vo"
+                },
+                "updatedBy": {
+                  "type": "string",
+                  "example": "Quynh Vo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Category"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Delete Category By ID",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "example": "DELETE SUCCESSFUL"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "tags": ["Category"],
+        "security": [],
+        "summary": "Get List Category",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "example": "Ca phe"
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/category": {
+      "post": {
+        "tags": ["Category"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": true,
+            "schema": {
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "required": true,
+                  "example": "Ca phe"
+                }
+              }
+            }
+          }
+        ],
+        "summary": "Create Category",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "example": "Ca phe"
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/order": {
+      "get": {
+        "tags": ["Order"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get List Order Of One",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "3ac24a1zxx17n56535hf26519"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "waiting"
+                      },
+                      "comment": {
+                        "type": "string",
+                        "example": "nhieu duong nhieu da"
+                      },
+                      "requiredDate": {
+                        "type": "string",
+                        "example": "2021-03-01T14:03:13.222Z"
+                      },
+                      "shippedDate": {
+                        "type": "string",
+                        "example": "2021-03-05T14:08:44.222Z"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "shipFee": {
+                        "type": "number",
+                        "example": 20000
+                      },
+                      "total": {
+                        "type": "number",
+                        "example": 100000
+                      },
+                      "infoGuest": {
+                        "type": "object",
+                        "properties": {
+                          "firstName": {
+                            "type": "string",
+                            "example": "Quynh"
+                          },
+                          "lastName": {
+                            "type": "string",
+                            "example": "Vo"
+                          },
+                          "address": {
+                            "type": "string",
+                            "example": "Ho Chi Minh"
+                          },
+                          "phone": {
+                            "type": "string",
+                            "example": "0938329469"
+                          }
+                        }
+                      },
+                      "orderDetails": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "product": {
+                              "type": "object",
+                              "properties": {
+                                "_id": {
+                                  "type": "string",
+                                  "example": "5fe80b2fcc75a33868ff2751"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "Ca phe da"
+                                },
+                                "price": {
+                                  "type": "number",
+                                  "example": 25000
+                                },
+                                "description": {
+                                  "type": "string",
+                                  "example": "Ca phe nguyen chat tu Tay Nguyen"
+                                },
+                                "category": {
+                                  "type": "object",
+                                  "properties": {
+                                    "_id": {
+                                      "type": "string",
+                                      "example": "2fe80b2fcc75a11258ff32512"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "Ca phe"
+                                    }
+                                  }
+                                },
+                                "images": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "_id": {
+                                        "type": "string",
+                                        "example": "3ac24a1zxx17n56535hf26519"
+                                      },
+                                      "name": {
+                                        "type": "string",
+                                        "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                                      }
+                                    }
+                                  }
+                                },
+                                "createdBy": {
+                                  "type": "string",
+                                  "example": "Quynh Vo"
+                                },
+                                "updatedBy": {
+                                  "type": "string",
+                                  "example": "Quynh Vo"
+                                }
+                              }
+                            },
+                            "quantity": {
+                              "type": "number",
+                              "example": 2
+                            },
+                            "size": {
+                              "type": "string",
+                              "example": "L"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Order"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Create Order",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "properties": {
+                "comment": {
+                  "type": "string",
+                  "example": "it da"
+                },
+                "firstName": {
+                  "type": "string",
+                  "example": "Quynh"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "Vo"
+                },
+                "orderDetails": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "product": {
+                        "type": "string",
+                        "required": true,
+                        "example": "6030c5a600802f3b60fdf554"
+                      },
+                      "quantity": {
+                        "type": "number",
+                        "required": true,
+                        "example": 1
+                      },
+                      "size": {
+                        "type": "string",
+                        "required": true,
+                        "example": "L"
+                      },
+                      "note": {
+                        "type": "string",
+                        "example": "Rieng mon nay it da"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "SUCCESSFUL"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders": {
+      "get": {
+        "tags": ["Order"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get List Orders",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "3ac24a1zxx17n56535hf26519"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "waiting"
+                      },
+                      "comment": {
+                        "type": "string",
+                        "example": "nhieu duong nhieu da"
+                      },
+                      "requiredDate": {
+                        "type": "string",
+                        "example": "2021-03-01T14:03:13.222Z"
+                      },
+                      "shippedDate": {
+                        "type": "string",
+                        "example": "2021-03-05T14:08:44.222Z"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "shipFee": {
+                        "type": "number",
+                        "example": 20000
+                      },
+                      "total": {
+                        "type": "number",
+                        "example": 100000
+                      },
+                      "infoGuest": {
+                        "type": "object",
+                        "properties": {
+                          "firstName": {
+                            "type": "string",
+                            "example": "Quynh"
+                          },
+                          "lastName": {
+                            "type": "string",
+                            "example": "Vo"
+                          },
+                          "address": {
+                            "type": "string",
+                            "example": "Ho Chi Minh"
+                          },
+                          "phone": {
+                            "type": "string",
+                            "example": "0938329469"
+                          }
+                        }
+                      },
+                      "orderDetails": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "product": {
+                              "type": "object",
+                              "properties": {
+                                "_id": {
+                                  "type": "string",
+                                  "example": "5fe80b2fcc75a33868ff2751"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "Ca phe da"
+                                },
+                                "price": {
+                                  "type": "number",
+                                  "example": 25000
+                                },
+                                "description": {
+                                  "type": "string",
+                                  "example": "Ca phe nguyen chat tu Tay Nguyen"
+                                },
+                                "category": {
+                                  "type": "object",
+                                  "properties": {
+                                    "_id": {
+                                      "type": "string",
+                                      "example": "2fe80b2fcc75a11258ff32512"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "Ca phe"
+                                    }
+                                  }
+                                },
+                                "images": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "_id": {
+                                        "type": "string",
+                                        "example": "3ac24a1zxx17n56535hf26519"
+                                      },
+                                      "name": {
+                                        "type": "string",
+                                        "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                                      }
+                                    }
+                                  }
+                                },
+                                "createdBy": {
+                                  "type": "string",
+                                  "example": "Quynh Vo"
+                                },
+                                "updatedBy": {
+                                  "type": "string",
+                                  "example": "Quynh Vo"
+                                }
+                              }
+                            },
+                            "quantity": {
+                              "type": "number",
+                              "example": 2
+                            },
+                            "size": {
+                              "type": "string",
+                              "example": "L"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/tracking/:status": {
+      "get": {
+        "tags": ["Order"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "path",
+            "required": true,
+            "description": "Status",
+            "schema": {
+              "type": "string",
+              "example": "waiting"
+            }
+          }
+        ],
+        "summary": "Get List Order By Status",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "3ac24a1zxx17n56535hf26519"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "waiting"
+                      },
+                      "comment": {
+                        "type": "string",
+                        "example": "nhieu duong nhieu da"
+                      },
+                      "requiredDate": {
+                        "type": "string",
+                        "example": "2021-03-01T14:03:13.222Z"
+                      },
+                      "shippedDate": {
+                        "type": "string",
+                        "example": "2021-03-05T14:08:44.222Z"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "shipFee": {
+                        "type": "number",
+                        "example": 20000
+                      },
+                      "total": {
+                        "type": "number",
+                        "example": 100000
+                      },
+                      "infoGuest": {
+                        "type": "object",
+                        "properties": {
+                          "firstName": {
+                            "type": "string",
+                            "example": "Quynh"
+                          },
+                          "lastName": {
+                            "type": "string",
+                            "example": "Vo"
+                          },
+                          "address": {
+                            "type": "string",
+                            "example": "Ho Chi Minh"
+                          },
+                          "phone": {
+                            "type": "string",
+                            "example": "0938329469"
+                          }
+                        }
+                      },
+                      "orderDetails": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "product": {
+                              "type": "object",
+                              "properties": {
+                                "_id": {
+                                  "type": "string",
+                                  "example": "5fe80b2fcc75a33868ff2751"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "Ca phe da"
+                                },
+                                "price": {
+                                  "type": "number",
+                                  "example": 25000
+                                },
+                                "description": {
+                                  "type": "string",
+                                  "example": "Ca phe nguyen chat tu Tay Nguyen"
+                                },
+                                "category": {
+                                  "type": "object",
+                                  "properties": {
+                                    "_id": {
+                                      "type": "string",
+                                      "example": "2fe80b2fcc75a11258ff32512"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "Ca phe"
+                                    }
+                                  }
+                                },
+                                "images": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "_id": {
+                                        "type": "string",
+                                        "example": "3ac24a1zxx17n56535hf26519"
+                                      },
+                                      "name": {
+                                        "type": "string",
+                                        "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                                      }
+                                    }
+                                  }
+                                },
+                                "createdBy": {
+                                  "type": "string",
+                                  "example": "Quynh Vo"
+                                },
+                                "updatedBy": {
+                                  "type": "string",
+                                  "example": "Quynh Vo"
+                                }
+                              }
+                            },
+                            "quantity": {
+                              "type": "number",
+                              "example": 2
+                            },
+                            "size": {
+                              "type": "string",
+                              "example": "L"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/cancel/:id": {
+      "post": {
+        "tags": ["Order"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID Order",
+            "schema": {
+              "type": "string",
+              "example": "2fe80b2fcc75a11258ff32512"
+            }
+          }
+        ],
+        "summary": "Cancel Order With ID",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "3ac24a1zxx17n56535hf26519"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "canceled"
+                      },
+                      "comment": {
+                        "type": "string",
+                        "example": "nhieu duong nhieu da"
+                      },
+                      "requiredDate": {
+                        "type": "string",
+                        "example": "2021-03-01T14:03:13.222Z"
+                      },
+                      "shippedDate": {
+                        "type": "string",
+                        "example": "2021-03-05T14:08:44.222Z"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "shipFee": {
+                        "type": "number",
+                        "example": 20000
+                      },
+                      "total": {
+                        "type": "number",
+                        "example": 100000
+                      },
+                      "infoGuest": {
+                        "type": "object",
+                        "properties": {
+                          "firstName": {
+                            "type": "string",
+                            "example": "Quynh"
+                          },
+                          "lastName": {
+                            "type": "string",
+                            "example": "Vo"
+                          },
+                          "address": {
+                            "type": "string",
+                            "example": "Ho Chi Minh"
+                          },
+                          "phone": {
+                            "type": "string",
+                            "example": "0938329469"
+                          }
+                        }
+                      },
+                      "orderDetails": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "product": {
+                              "type": "object",
+                              "properties": {
+                                "_id": {
+                                  "type": "string",
+                                  "example": "5fe80b2fcc75a33868ff2751"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "Ca phe da"
+                                },
+                                "price": {
+                                  "type": "number",
+                                  "example": 25000
+                                },
+                                "description": {
+                                  "type": "string",
+                                  "example": "Ca phe nguyen chat tu Tay Nguyen"
+                                },
+                                "category": {
+                                  "type": "object",
+                                  "properties": {
+                                    "_id": {
+                                      "type": "string",
+                                      "example": "2fe80b2fcc75a11258ff32512"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "Ca phe"
+                                    }
+                                  }
+                                },
+                                "images": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "_id": {
+                                        "type": "string",
+                                        "example": "3ac24a1zxx17n56535hf26519"
+                                      },
+                                      "name": {
+                                        "type": "string",
+                                        "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                                      }
+                                    }
+                                  }
+                                },
+                                "createdBy": {
+                                  "type": "string",
+                                  "example": "Quynh Vo"
+                                },
+                                "updatedBy": {
+                                  "type": "string",
+                                  "example": "Quynh Vo"
+                                }
+                              }
+                            },
+                            "quantity": {
+                              "type": "number",
+                              "example": 2
+                            },
+                            "size": {
+                              "type": "string",
+                              "example": "L"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/confirm/:id": {
+      "post": {
+        "tags": ["Order"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID Order",
+            "schema": {
+              "type": "string",
+              "example": "2fe80b2fcc75a11258ff32512"
+            }
+          }
+        ],
+        "summary": "Cancel Order With ID",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "3ac24a1zxx17n56535hf26519"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "Confirmed"
+                      },
+                      "comment": {
+                        "type": "string",
+                        "example": "nhieu duong nhieu da"
+                      },
+                      "requiredDate": {
+                        "type": "string",
+                        "example": "2021-03-01T14:03:13.222Z"
+                      },
+                      "shippedDate": {
+                        "type": "string",
+                        "example": "2021-03-05T14:08:44.222Z"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "shipFee": {
+                        "type": "number",
+                        "example": 20000
+                      },
+                      "total": {
+                        "type": "number",
+                        "example": 100000
+                      },
+                      "infoGuest": {
+                        "type": "object",
+                        "properties": {
+                          "firstName": {
+                            "type": "string",
+                            "example": "Quynh"
+                          },
+                          "lastName": {
+                            "type": "string",
+                            "example": "Vo"
+                          },
+                          "address": {
+                            "type": "string",
+                            "example": "Ho Chi Minh"
+                          },
+                          "phone": {
+                            "type": "string",
+                            "example": "0938329469"
+                          }
+                        }
+                      },
+                      "orderDetails": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "product": {
+                              "type": "object",
+                              "properties": {
+                                "_id": {
+                                  "type": "string",
+                                  "example": "5fe80b2fcc75a33868ff2751"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "Ca phe da"
+                                },
+                                "price": {
+                                  "type": "number",
+                                  "example": 25000
+                                },
+                                "description": {
+                                  "type": "string",
+                                  "example": "Ca phe nguyen chat tu Tay Nguyen"
+                                },
+                                "category": {
+                                  "type": "object",
+                                  "properties": {
+                                    "_id": {
+                                      "type": "string",
+                                      "example": "2fe80b2fcc75a11258ff32512"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "Ca phe"
+                                    }
+                                  }
+                                },
+                                "images": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "_id": {
+                                        "type": "string",
+                                        "example": "3ac24a1zxx17n56535hf26519"
+                                      },
+                                      "name": {
+                                        "type": "string",
+                                        "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                                      }
+                                    }
+                                  }
+                                },
+                                "createdBy": {
+                                  "type": "string",
+                                  "example": "Quynh Vo"
+                                },
+                                "updatedBy": {
+                                  "type": "string",
+                                  "example": "Quynh Vo"
+                                }
+                              }
+                            },
+                            "quantity": {
+                              "type": "number",
+                              "example": 2
+                            },
+                            "size": {
+                              "type": "string",
+                              "example": "L"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/update/:id": {
+      "post": {
+        "tags": ["Order"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID Order",
+            "schema": {
+              "type": "string",
+              "example": "2fe80b2fcc75a11258ff32512"
+            }
+          }
+        ],
+        "summary": "Cancel Order With ID",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "3ac24a1zxx17n56535hf26519"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "shipped"
+                      },
+                      "comment": {
+                        "type": "string",
+                        "example": "nhieu duong nhieu da"
+                      },
+                      "requiredDate": {
+                        "type": "string",
+                        "example": "2021-03-01T14:03:13.222Z"
+                      },
+                      "shippedDate": {
+                        "type": "string",
+                        "example": "2021-03-05T14:08:44.222Z"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "example": "Quynh Vo"
+                      },
+                      "shipFee": {
+                        "type": "number",
+                        "example": 20000
+                      },
+                      "total": {
+                        "type": "number",
+                        "example": 100000
+                      },
+                      "infoGuest": {
+                        "type": "object",
+                        "properties": {
+                          "firstName": {
+                            "type": "string",
+                            "example": "Quynh"
+                          },
+                          "lastName": {
+                            "type": "string",
+                            "example": "Vo"
+                          },
+                          "address": {
+                            "type": "string",
+                            "example": "Ho Chi Minh"
+                          },
+                          "phone": {
+                            "type": "string",
+                            "example": "0938329469"
+                          }
+                        }
+                      },
+                      "orderDetails": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "product": {
+                              "type": "object",
+                              "properties": {
+                                "_id": {
+                                  "type": "string",
+                                  "example": "5fe80b2fcc75a33868ff2751"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "Ca phe da"
+                                },
+                                "price": {
+                                  "type": "number",
+                                  "example": 25000
+                                },
+                                "description": {
+                                  "type": "string",
+                                  "example": "Ca phe nguyen chat tu Tay Nguyen"
+                                },
+                                "category": {
+                                  "type": "object",
+                                  "properties": {
+                                    "_id": {
+                                      "type": "string",
+                                      "example": "2fe80b2fcc75a11258ff32512"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "Ca phe"
+                                    }
+                                  }
+                                },
+                                "images": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "_id": {
+                                        "type": "string",
+                                        "example": "3ac24a1zxx17n56535hf26519"
+                                      },
+                                      "name": {
+                                        "type": "string",
+                                        "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                                      }
+                                    }
+                                  }
+                                },
+                                "createdBy": {
+                                  "type": "string",
+                                  "example": "Quynh Vo"
+                                },
+                                "updatedBy": {
+                                  "type": "string",
+                                  "example": "Quynh Vo"
+                                }
+                              }
+                            },
+                            "quantity": {
+                              "type": "number",
+                              "example": 2
+                            },
+                            "size": {
+                              "type": "string",
+                              "example": "L"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/carts": {
+      "get": {
+        "tags": ["Cart"],
+        "security": [],
+        "summary": "Get List Cart",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "product": {
+                            "type": "object",
+                            "properties": {
+                              "_id": {
+                                "type": "string",
+                                "example": "5fe80b2fcc75a33868ff2751"
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "Ca phe da"
+                              },
+                              "price": {
+                                "type": "number",
+                                "example": 25000
+                              },
+                              "description": {
+                                "type": "string",
+                                "example": "Ca phe nguyen chat tu Tay Nguyen"
+                              },
+                              "category": {
+                                "type": "object",
+                                "properties": {
+                                  "_id": {
+                                    "type": "string",
+                                    "example": "2fe80b2fcc75a11258ff32512"
+                                  },
+                                  "name": {
+                                    "type": "string",
+                                    "example": "Ca phe"
+                                  }
+                                }
+                              },
+                              "images": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "_id": {
+                                      "type": "string",
+                                      "example": "3ac24a1zxx17n56535hf26519"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "2e9d46ed-638c-4a38-8685-4e7585340a78"
+                                    }
+                                  }
+                                }
+                              },
+                              "createdBy": {
+                                "type": "string",
+                                "example": "Quynh Vo"
+                              },
+                              "updatedBy": {
+                                "type": "string",
+                                "example": "Quynh Vo"
+                              }
+                            }
+                          },
+                          "quantity": {
+                            "type": "number",
+                            "example": 2
+                          },
+                          "size": {
+                            "type": "string",
+                            "example": "L"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cart": {
+      "post": {
+        "tags": ["Cart"],
+        "security": [],
+        "summary": "Create Cart",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": true,
+            "schema": {
+              "properties": {
+                "product": {
+                  "type": "string",
+                  "required": true,
+                  "description": "Product Id",
+                  "example": "60a4d5712f55e0650c9d9a90"
+                },
+                "size": {
+                  "type": "string",
+                  "example": "L"
+                },
+                "quantity": {
+                  "type": "string",
+                  "example": 2
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "SUCCESSFUL"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Cart"],
+        "security": [],
+        "summary": "Update A Cart",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": true,
+            "schema": {
+              "properties": {
+                "product": {
+                  "type": "string",
+                  "required": true,
+                  "example": "3ac24a1zxx17n56535hf26519"
+                },
+                "quantity": {
+                  "type": "number",
+                  "example": 1
+                },
+                "size": {
+                  "type": "string",
+                  "example": "M"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cart/delete/list": {
+      "post": {
+        "tags": ["Cart"],
+        "security": [],
+        "summary": "Delete List Cart",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": true,
+            "schema": {
+              "properties": {
+                "carts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "example": "3ac24a1zxx17n56535hf26519"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "DELETE SUCCESSFUL"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cart/price": {
+      "post": {
+        "tags": ["Cart"],
+        "security": [],
+        "summary": "Delete List Cart",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": true,
+            "schema": {
+              "properties": {
+                "carts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "example": "3ac24a1zxx17n56535hf26519"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "result": {
+                  "type": "number",
+                  "example": 55000
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cart/:id": {
+      "delete": {
+        "tags": ["Cart"],
+        "security": [],
+        "summary": "Delete Cart Item",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Cart ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "5fd447f7d176de2e844922ad"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "DELETE SUCCESSFUL"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cart/all": {
+      "delete": {
+        "tags": ["Cart"],
+        "security": [],
+        "summary": "Delete All Cart Item",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "DELETE SUCCESSFUL"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/image/:idProduct": {
+      "post": {
+        "tags": ["Image"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Upload Image",
+        "description": "Upload Image",
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "file",
+            "type": "file",
+            "description": "File Upload",
+            "required": true
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "SUCCESSFUL"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Image"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Edit Image",
+        "description": "Edit Image",
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "file",
+            "type": "file",
+            "description": "File Upload",
+            "required": true
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "SUCCESSFUL"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/statistic/month": {
+      "get": {
+        "tags": ["Statistic"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Analytics order by month",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully",
+            "schema": {
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "[0]": {
+                            "type": "object",
+                            "properties": {
+                              "month": {
+                                "type": "number",
+                                "example": 1
+                              },
+                              "total": {
+                                "type": "number",
+                                "example": 10000
+                              }
+                            }
+                          },
+                          "[1]": {
+                            "type": "object",
+                            "properties": {
+                              "month": {
+                                "type": "number",
+                                "example": 2
+                              },
+                              "total": {
+                                "type": "number",
+                                "example": 0
+                              }
+                            }
+                          },
+                          "[2]": {
+                            "type": "object",
+                            "properties": {
+                              "month": {
+                                "type": "number",
+                                "example": 3
+                              },
+                              "total": {
+                                "type": "number",
+                                "example": 0
+                              }
+                            }
+                          },
+                          "[3]": {
+                            "type": "object",
+                            "properties": {
+                              "month": {
+                                "type": "number",
+                                "example": 4
+                              },
+                              "total": {
+                                "type": "number",
+                                "example": 0
+                              }
+                            }
+                          },
+                          "[4]": {
+                            "type": "object",
+                            "properties": {
+                              "month": {
+                                "type": "number",
+                                "example": 5
+                              },
+                              "total": {
+                                "type": "number",
+                                "example": 0
+                              }
+                            }
+                          },
+                          "[5]": {
+                            "type": "object",
+                            "properties": {
+                              "month": {
+                                "type": "number",
+                                "example": 6
+                              },
+                              "total": {
+                                "type": "number",
+                                "example": 0
+                              }
+                            }
+                          },
+                          "[6]": {
+                            "type": "object",
+                            "properties": {
+                              "month": {
+                                "type": "number",
+                                "example": 7
+                              },
+                              "total": {
+                                "type": "number",
+                                "example": 0
+                              }
+                            }
+                          },
+                          "[7]": {
+                            "type": "object",
+                            "properties": {
+                              "month": {
+                                "type": "number",
+                                "example": 8
+                              },
+                              "total": {
+                                "type": "number",
+                                "example": 0
+                              }
+                            }
+                          },
+                          "[8]": {
+                            "type": "object",
+                            "properties": {
+                              "month": {
+                                "type": "number",
+                                "example": 9
+                              },
+                              "total": {
+                                "type": "number",
+                                "example": 0
+                              }
+                            }
+                          },
+                          "[9]": {
+                            "type": "object",
+                            "properties": {
+                              "month": {
+                                "type": "number",
+                                "example": 10
+                              },
+                              "total": {
+                                "type": "number",
+                                "example": 0
+                              }
+                            }
+                          },
+                          "[10]": {
+                            "type": "object",
+                            "properties": {
+                              "month": {
+                                "type": "number",
+                                "example": 11
+                              },
+                              "total": {
+                                "type": "number",
+                                "example": 0
+                              }
+                            }
+                          },
+                          "[11]": {
+                            "type": "object",
+                            "properties": {
+                              "month": {
+                                "type": "number",
+                                "example": 12
+                              },
+                              "total": {
+                                "type": "number",
+                                "example": 0
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
